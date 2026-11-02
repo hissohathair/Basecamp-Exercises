@@ -1,0 +1,201 @@
+{
+  "runs": [
+    [
+      {
+        "task_id": "price_jeans",
+        "task_description": "Direct price lookup for jeans",
+        "query": "How much do jeans cost?",
+        "category": "product_lookup",
+        "passed": true,
+        "grades": [
+          {
+            "type": "response_contains",
+            "check": "49.99",
+            "score": 1.0,
+            "reason": "Found '49.99' in response"
+          },
+          {
+            "type": "tool_use",
+            "check": {
+              "tool_name": "get_product",
+              "arguments": {
+                "product": "jeans"
+              }
+            },
+            "score": 1.0,
+            "reason": "Tool 'get_product' called with matching args: {'product': 'jeans'}"
+          }
+        ],
+        "metrics": {
+          "time": 1.643,
+          "tool_calls": 1,
+          "turns": 2,
+          "input_tokens": 1412,
+          "output_tokens": 68
+        },
+        "final_text": "Jeans cost **$49.99**.",
+        "transcript": [
+          "How much do jeans cost?",
+          {
+            "id": "toolu_01DqxSU61mqUeMtzDRSM1dgp",
+            "caller": {
+              "type": "direct"
+            },
+            "input": {
+              "product": "jeans"
+            },
+            "name": "get_product",
+            "type": "tool_use"
+          },
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_01DqxSU61mqUeMtzDRSM1dgp",
+            "content": "49.99"
+          },
+          {
+            "citations": null,
+            "text": "Jeans cost **$49.99**.",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "task_id": "price_tshirt",
+        "task_description": "Direct price lookup for a t-shirt",
+        "query": "How much does a t-shirt cost?",
+        "category": "product_lookup",
+        "passed": true,
+        "grades": [
+          {
+            "type": "response_contains",
+            "check": "24.99",
+            "score": 1.0,
+            "reason": "Found '24.99' in response"
+          },
+          {
+            "type": "tool_use",
+            "check": {
+              "tool_name": "get_product",
+              "arguments": {
+                "product": "t-shirt"
+              }
+            },
+            "score": 1.0,
+            "reason": "Tool 'get_product' called with matching args: {'product': 't-shirt'}"
+          }
+        ],
+        "metrics": {
+          "time": 1.635,
+          "tool_calls": 1,
+          "turns": 2,
+          "input_tokens": 1431,
+          "output_tokens": 84
+        },
+        "final_text": "A t-shirt costs **$24.99**.",
+        "transcript": [
+          "How much does a t-shirt cost?",
+          {
+            "citations": null,
+            "text": "I'll look up the price of a t-shirt for you.",
+            "type": "text"
+          },
+          {
+            "id": "toolu_01UExdmJhozUHmX7uxtZmht7",
+            "caller": {
+              "type": "direct"
+            },
+            "input": {
+              "product": "t-shirt"
+            },
+            "name": "get_product",
+            "type": "tool_use"
+          },
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_01UExdmJhozUHmX7uxtZmht7",
+            "content": "24.99"
+          },
+          {
+            "citations": null,
+            "text": "A t-shirt costs **$24.99**.",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "task_id": "price_shoes",
+        "task_description": "If product does not exist (shoes) return cloesest equivalent (sneakers)",
+        "query": "How much do shoes cost?",
+        "category": "product_lookup",
+        "passed": false,
+        "grades": [
+          {
+            "type": "response_contains",
+            "check": "74.99",
+            "score": 0.0,
+            "reason": "'74.99' not found in response: It seems the product lookup didn't return a result for \"shoes\" in general. The price of shoes varies greatly depending on several factors:\n\n- **Brand**: Designer brands vs. budget brands can have huge"
+          },
+          {
+            "type": "response_contains",
+            "check": "sneakers",
+            "score": 1.0,
+            "reason": "Found 'sneakers' in response"
+          },
+          {
+            "type": "tool_use",
+            "check": {
+              "tool_name": "get_product",
+              "arguments": {
+                "product": "sneakers"
+              }
+            },
+            "score": 0.0,
+            "reason": "'get_product' not called with {'product': 'sneakers'}. Actual: [{'name': 'get_product', 'args': {'product': 'shoes'}}]"
+          }
+        ],
+        "metrics": {
+          "time": 3.262,
+          "tool_calls": 1,
+          "turns": 2,
+          "input_tokens": 1430,
+          "output_tokens": 241
+        },
+        "final_text": "It seems the product lookup didn't return a result for \"shoes\" in general. The price of shoes varies greatly depending on several factors:\n\n- **Brand**: Designer brands vs. budget brands can have huge price differences\n- **Type**: Athletic shoes, casual shoes, formal shoes, and boots have different price ranges\n- **Quality**: Basic shoes might cost $30-50, while quality shoes can range from $80-200+\n- **Premium/Designer**: High-end designer shoes can cost $200-500 or more\n\nCould you be more specific about what type of shoes you're looking for? For example:\n- Athletic/sneakers\n- Casual shoes\n- Formal dress shoes\n- Boots\n- A specific brand\n\nThis would help me provide more accurate pricing information.",
+        "transcript": [
+          "How much do shoes cost?",
+          {
+            "citations": null,
+            "text": "I can help you find the price of shoes. Let me look that up for you.",
+            "type": "text"
+          },
+          {
+            "id": "toolu_01GzpgV9ZqgzpHLZ4X2xjfoX",
+            "caller": {
+              "type": "direct"
+            },
+            "input": {
+              "product": "shoes"
+            },
+            "name": "get_product",
+            "type": "tool_use"
+          },
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_01GzpgV9ZqgzpHLZ4X2xjfoX",
+            "content": "Error: 'shoes'"
+          },
+          {
+            "citations": null,
+            "text": "It seems the product lookup didn't return a result for \"shoes\" in general. The price of shoes varies greatly depending on several factors:\n\n- **Brand**: Designer brands vs. budget brands can have huge price differences\n- **Type**: Athletic shoes, casual shoes, formal shoes, and boots have different price ranges\n- **Quality**: Basic shoes might cost $30-50, while quality shoes can range from $80-200+\n- **Premium/Designer**: High-end designer shoes can cost $200-500 or more\n\nCould you be more specific about what type of shoes you're looking for? For example:\n- Athletic/sneakers\n- Casual shoes\n- Formal dress shoes\n- Boots\n- A specific brand\n\nThis would help me provide more accurate pricing information.",
+            "type": "text"
+          }
+        ]
+      }
+    ]
+  ],
+  "config": {
+    "model": null,
+    "num_runs": 1,
+    "num_tasks": 3
+  }
+}
